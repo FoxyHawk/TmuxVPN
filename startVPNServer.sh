@@ -34,7 +34,18 @@ while read ip; do
   fi
   tmux send-keys -t server:0.$i "ssh ${ip}" C-m
   sleep 1
-  tmux send-keys -t server:0.$i "openvpn --port ${port} --comp-lzo no --cipher no --ncp-disable --verb 3 --proto udp --dev tun0 --ifconfig 172.16.42.$((i*2+1)) 172.16.42.$((i*2))" C-m
+
+  command="openvpn\
+  --port ${port}\
+  --comp-lzo no\
+  --cipher no\
+  --ncp-disable\
+  --verb 3\
+  --proto udp\
+  --dev tun0\
+  --ifconfig 172.16.42.$((i*2+1)) 172.16.42.$((i*2))"
+
+  tmux send-keys -t server:0.$i "${command}" C-m
   i=$((i+1))
 done < $file
 

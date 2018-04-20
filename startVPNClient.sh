@@ -22,7 +22,20 @@ while read ip; do
     tmux split-window -t client
     tmux select-layout -t client tiled
   fi
-  tmux send-keys -t client:0.$i "openvpn --remote ${ip} --port ${port} --comp-lzo no --cipher no --ncp-disable --verb 3 --proto udp --nobind --dev tun${i} --ifconfig 172.16.42.$((i*2)) 172.16.42.$((i*2+1))" C-m
+
+  command="openvpn\
+  --remote ${ip}\
+  --port ${port}\
+  --comp-lzo no\
+  --cipher no\
+  --ncp-disable\
+  --verb 3\
+  --proto udp\
+  --nobind\
+  --dev tun${i}\
+  --ifconfig 172.16.42.$((i*2)) 172.16.42.$((i*2+1))"
+
+  tmux send-keys -t client:0.$i "${command}" C-m
   i=$((i+1))
 done < $file
 

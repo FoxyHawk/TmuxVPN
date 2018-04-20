@@ -1,10 +1,10 @@
 # TmuxVPN
 
-Combine openvpn, ssh and tmux for easy CnC client-server relationship.
+Combine `openvpn`, `ssh` and `tmux` for easy CnC client-server relationship.
 
 ## Install
 
-Install/Update openvpn and tmux packages :
+Install/Update `openvpn` and `tmux` packages :
 ```
 apt-get update
 apt-get install openvpn tmux
@@ -24,3 +24,8 @@ The host is multiple times client of different vpn servers.
 ## Server Side
 
 `ip.txt` contains IP addresses of vpn servers.
+Only use `openvpn`, no need for `tmux`.
+
+## Tunnel
+
+All encryption and authentication features disabled.
